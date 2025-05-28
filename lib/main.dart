@@ -7,11 +7,11 @@ void main(List<String> args) {
     arguments: args,
     commands: commands,
     parser: CliArguments.parse,
-    app: (args) {
+    app: (args) async {
       print("Main part of my app...");
       print("Message: ${args.message}");
       final client = ChatGptClient();
-      final result = client.query(args.message!);
+      final result = await client.query(args.message!);
       print(result);
     },
   );
