@@ -11,21 +11,11 @@ class PromptEvaluationResult {
   final int score;
   final String comment;
 
-  PromptEvaluationResult({
-    required this.prompt,
-    required this.response,
-    required this.score,
-    required this.comment,
-  });
+  PromptEvaluationResult({required this.prompt, required this.response, required this.score, required this.comment});
 
   List<String> toCsvRow() => [prompt, response, score.toString(), comment];
 
-  Map<String, dynamic> toJson() => {
-    'prompt': prompt,
-    'response': response,
-    'score': score,
-    'comment': comment,
-  };
+  Map<String, dynamic> toJson() => {'prompt': prompt, 'response': response, 'score': score, 'comment': comment};
 }
 
 class PromptEvaluator {
@@ -54,12 +44,7 @@ class PromptEvaluator {
       final response = await chatGptClient.query(prompt, model: 'gpt-4');
       final score = await _autoScore(prompt, response);
       final comment = await _autoComment(prompt, response);
-      results.add(PromptEvaluationResult(
-        prompt: prompt,
-        response: response,
-        score: score,
-        comment: comment,
-      ));
+      results.add(PromptEvaluationResult(prompt: prompt, response: response, score: score, comment: comment));
     }
     return results;
   }
@@ -75,18 +60,15 @@ class PromptEvaluator {
 
   /// Uses GPT-4 to auto-score the response (0-5).
   Future<int> _autoScore(String prompt, String response) async {
-    final scoringPrompt = '''
-Ohodnoť následující odpověď na prompt na škále 0–5, kde 5 je perfektní, 0 je zcela špatně. Odpověz pouze číslem.
-
-PROMPT:
-$prompt
-
-ODPOVĚĎ:
-$response
-''';
+    final scoringPrompt =
+        'Ohodnoť následující odpověď na prompt na škále 0–5, kde 5 je perfektní, 0 je zcela špatně. '
+        'Odpověz pouze číslem.\n\nPROMPT:\n$prompt\n\nODPOVĚĎ:\n$response';
     final scoreStr = await chatGptClient.query(scoringPrompt, model: 'gpt-4');
     final match = RegExp(r'\d').firstMatch(scoreStr);
     if (match != null) {
+      if (match.group(0) == null) {
+        throw Exception('Could not parse score from response: $scoreStr');
+      }
       return int.parse(match.group(0)!);
     }
     return 0;
@@ -94,15 +76,9 @@ $response
 
   /// Uses GPT-4 to generate a comment about what is good, bad, or missing.
   Future<String> _autoComment(String prompt, String response) async {
-    final commentPrompt = '''
-Zhodnoť následující odpověď na prompt. Napiš, co je dobře, co špatně nebo co chybí. Piš česky.
-
-PROMPT:
-$prompt
-
-ODPOVĚĎ:
-$response
-''';
+    final commentPrompt =
+        'Zhodnoť následující odpověď na prompt. Napiš, co je dobře, co špatně nebo co chybí. '
+        'Piš česky.\n\nPROMPT:\n$prompt\n\nODPOVĚĎ:\n$response';
     return await chatGptClient.query(commentPrompt, model: 'gpt-4');
   }
 }
