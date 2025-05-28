@@ -5,6 +5,4 @@
 .task/
 .env
 
-example/
-results/
-prompts.json
+bin/ai_prompt_evaluator

@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:ai_prompt_evaluator/clients/chat_gpt_client.dart';
-import 'package:csv/csv.dart';
-import 'package:dio/dio.dart';
 
 class PromptEvaluationResult {
   final String prompt;
