@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:ai_prompt_evaluator/chat_gpt_client.dart';
+import 'package:ai_prompt_evaluator/clients/chat_gpt_client.dart';
 import 'package:csv/csv.dart';
 import 'package:dio/dio.dart';
 
@@ -25,6 +25,7 @@ class PromptEvaluator {
 
   /// Reads prompts from a JSON file (expects a list of strings).
   Future<List<String>> readPrompts(String path) async {
+    print('Loading prompts from $path...');
     final file = File(path);
     if (!await file.exists()) {
       throw Exception('File not found: $path');
@@ -39,6 +40,7 @@ class PromptEvaluator {
 
   /// Evaluates all prompts, returns a list of results.
   Future<List<PromptEvaluationResult>> evaluatePrompts(List<String> prompts) async {
+    print('Evaluating prompts using GPT-4...');
     final results = <PromptEvaluationResult>[];
     for (final prompt in prompts) {
       final response = await chatGptClient.query(prompt, model: 'gpt-4');
@@ -51,6 +53,7 @@ class PromptEvaluator {
 
   /// Saves results to a JSON file.
   Future<void> saveResultsJson(List<PromptEvaluationResult> results, String path) async {
+    print('Saving results to $path...');
     final file = File(path);
     await file.parent.create(recursive: true);
     final jsonList = results.map((r) => r.toJson()).toList();

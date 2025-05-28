@@ -2,11 +2,12 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'prompt_evaluator.dart';
+import '../prompt_evaluator.dart';
 
 class ChartClient {
   /// Generates a bar chart using QuickChart.io and saves it as a PNG.
   Future<void> generateChart(List<PromptEvaluationResult> results, String path) async {
+    print('Generating chart to $path...');
     final labels = results.asMap().keys.map((i) => 'P\${i + 1}').toList();
     final scores = results.map((r) => r.score).toList();
 
@@ -49,5 +50,6 @@ class ChartClient {
     final file = File(path);
     await file.parent.create(recursive: true);
     await file.writeAsBytes(response.data);
+    print('Chart saved.');
   }
 }
