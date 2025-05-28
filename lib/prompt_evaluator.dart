@@ -19,6 +19,13 @@ class PromptEvaluationResult {
   });
 
   List<String> toCsvRow() => [prompt, response, score.toString(), comment];
+
+  Map<String, dynamic> toJson() => {
+    'prompt': prompt,
+    'response': response,
+    'score': score,
+    'comment': comment,
+  };
 }
 
 class PromptEvaluator {
@@ -57,62 +64,13 @@ class PromptEvaluator {
     return results;
   }
 
-  /// Saves results to a CSV file.
-  Future<void> saveResultsCsv(List<PromptEvaluationResult> results, String path) async {
+  /// Saves results to a JSON file.
+  Future<void> saveResultsJson(List<PromptEvaluationResult> results, String path) async {
     final file = File(path);
     await file.parent.create(recursive: true);
-    final rows = [
-      ['Prompt', 'Response', 'Score', 'Comment'],
-      ...results.map((r) => r.toCsvRow()),
-    ];
-    final csv = const ListToCsvConverter().convert(rows);
-    await file.writeAsString(csv);
-  }
-
-  /// Generates a bar chart using QuickChart.io and saves it as a PNG.
-  Future<void> generateChart(List<PromptEvaluationResult> results, String path) async {
-    final labels = results.asMap().keys.map((i) => 'P${i + 1}').toList();
-    final scores = results.map((r) => r.score).toList();
-
-    final chartConfig = {
-      'type': 'bar',
-      'data': {
-        'labels': labels,
-        'datasets': [
-          {
-            'label': 'Score',
-            'data': scores,
-            'backgroundColor': 'rgba(54, 162, 235, 0.7)',
-          }
-        ]
-      },
-      'options': {
-        'scales': {
-          'y': {
-            'beginAtZero': true,
-            'max': 5,
-          }
-        }
-      }
-    };
-
-    final url = 'https://quickchart.io/chart';
-    final dio = Dio();
-    final response = await dio.get(
-      url,
-      queryParameters: {
-        'c': jsonEncode(chartConfig),
-        'format': 'png',
-        'width': 600,
-        'height': 400,
-        'backgroundColor': 'white',
-      },
-      options: Options(responseType: ResponseType.bytes),
-    );
-
-    final file = File(path);
-    await file.parent.create(recursive: true);
-    await file.writeAsBytes(response.data);
+    final jsonList = results.map((r) => r.toJson()).toList();
+    final jsonString = const JsonEncoder.withIndent('  ').convert(jsonList);
+    await file.writeAsString(jsonString);
   }
 
   /// Uses GPT-4 to auto-score the response (0-5).
