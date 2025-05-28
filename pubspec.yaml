@@ -7,7 +7,10 @@ environment:
   sdk: '>=3.8.0 <4.0.0'
 
 dependencies:
+  dio: ^5.4.3
   vader_console: 1.0.0-dev.2
+  flutter_dotenv: ^5.1.0
+
 
 dev_dependencies:
   lints: ^6.0.0

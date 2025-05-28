@@ -26,7 +26,7 @@ class CliArguments extends Arguments {
       showHelp: results.wasParsed(CoreCommands.help.name),
       isVerbose: results.wasParsed(CoreCommands.verbose.name),
       showVersion: results.wasParsed(CoreCommands.version.name),
-      message: Arguments.getOptionOrNull(results, option: "message"),
+      message: Arguments.getOptionOrThrow(results, option: "message"),
     );
   }
 }
