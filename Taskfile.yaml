@@ -1,0 +1,26 @@
+version: '3'
+
+tasks:
+  build-macos:
+    desc: Build Dart executable for macOS and place it in bin/
+    cmds:
+      - |
+        app_name=$(grep -E '^name:' pubspec.yaml | sed 's/name: //')
+        app_version=$(grep -E '^version:' pubspec.yaml | sed 's/version: //')
+        app_description=$(grep -E '^description:' pubspec.yaml | sed 's/description: //')
+        dart compile exe lib/main.dart \
+          -D name="$app_name" \
+          -D version="$app_version" \
+          -D description="$app_description" \
+          -o "bin/$app_name"
+    sources:
+      - lib/main.dart
+      - pubspec.yaml
+    generates:
+      - bin/*
+
+  run-macos:
+    desc: Spustí zbuilděný program pro macOS
+    deps: [build-macos]
+    cmds:
+      - ./bin/ai_prompt_evaluator
