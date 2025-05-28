@@ -3,3 +3,7 @@
 .dart_tool/
 .idea/
 .env
+
+example/
+results/
+prompts.json
