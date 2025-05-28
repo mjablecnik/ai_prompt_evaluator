@@ -1,7 +1,6 @@
 import 'package:ai_prompt_evaluator/chat_gpt_client.dart';
 import 'package:ai_prompt_evaluator/prompt_evaluator.dart';
 import 'package:ai_prompt_evaluator/chart_client.dart';
-import 'dart:io';
 
 Future<void> main(List<String> args) async {
   final promptsPath = 'prompts.json';

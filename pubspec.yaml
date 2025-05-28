@@ -10,8 +10,6 @@ dependencies:
   dio: ^5.4.3
   vader_console: 1.0.0-dev.2
   dotenv: ^4.2.0
-  csv: ^5.0.0
-
 
 dev_dependencies:
   lints: ^6.0.0
