@@ -1,0 +1,20 @@
+[
+  {
+    "prompt": "Jaký je hlavní město České republiky?",
+    "response": "Hlavní město České republiky je Praha.",
+    "score": 5,
+    "comment": "Odpověď je správná. Komunikace je jasná a přesná, odpověď správně identifikuje Prahu jako hlavní město České republiky. Nechybí jí nic."
+  },
+  {
+    "prompt": "Napiš krátkou básničku o jaru.",
+    "response": "Jar přichází, vše se probouzí,\nzima odchází, jaro už krouží.\nPupeny na stromech se otevírají,\nvšechny srdce jí cestu připravují.\n\nKvetou narcisy v zahrádkách,\nlehce voní napříč parky.\nSluníčko se v teplých paprskách\nsměje na ptáčky, co zpívají tak krásně.\n\nJaro milujeme, u srdce nám hoří,\nkdyž vidíme krajinu, jak se probouzí a kvete.\nVše žije a dýchá, láska nám v srdci roste,\njaro je zde, zima se vzdaluje, odchází, mizí.",
+    "score": 5,
+    "comment": "Odpověď je velmi dobře napsaná. Básnička se týká jara, jak bylo požadováno v promptu. Autor používá různé obrazy a smyslové popisy, které přinášejí jaro k životu pro čtenáře. Básnička má srozumitelný rytmus a rým, který dodává textu melodický zvuk. Žádné chyby nebyly nalezeny."
+  },
+  {
+    "prompt": "Vysvětli princip fotosyntézy.",
+    "response": "Fotosyntéza je proces, při kterém rostliny, řasy a některé bakterie přeměňují světelnou energii, obvykle získávanou ze slunečního záření, na chemickou energii v podobě glukózy. Tento proces je základním mechanismem, jímž se do živých organismů dostává energie a uhlík potřebné k dalšímu životu.\n\nCelý proces fotosyntézy se dá rozdělit na dvě hlavní fáze - světelnou fázi a temnou fázi (také známou jako Calvinův cyklus).\n\nBěhem světelné fáze získávají rostliny světelnou energii, která je absorbována chlorofylem, pigmentem nacházejícím se v chloroplastech buněk rostlin. Tato energie je poté použita k rozdělení molekul vody na vodík a kyslík. Vodík se váže na molekulu nosiče energie NADP+, zatímco kyslík je uvolněn do atmosféry jako odpadní produkt.\n\nTemná fáze, jak název napovídá, nepotřebuje k proběhnutí přímé světlo. Během této fáze dochází k reakci mezi vodíkem, CO2 (oxidem uhličitým) a ATP (adenosin trifosfát), při které vzniká glukóza, která slouží jako hlavní zdroj energie pro rostliny. \n\nTo je zjednodušený popis procesu fotosyntézy. Ve skutečnosti jsou všechny chemické reakce, které se při tomto procesu odehrávají, mnohem komplexnější a zahrnují řadu enzymů a dalších molekul, které pomáhají regulovat celý proces.",
+    "score": 5,
+    "comment": "Odpověď je velmi dobrá. Obsahuje přesné a detailní informace týkající se procesu fotosyntézy. Autor správně popisuje obecný princip fotosyntézy, jak rostliny využívají světelnou energii a jak je přeměňují na chemickou energii. Dále pak rozděluje fotosyntézu na světelnou a temnou fázi a podrobně vysvětluje, co se v těchto fázích děje. V odpovědi je také zmíněna role chlorofylu, NADP+, ATP a oxidu uhličitého. Chybí mu možná jen konkrétnější detaily nebo názvy enzymů a molekul, které se podílí na regulaci procesu, ale to už by mohlo být příliš komplikované pro laickou veřejnost."
+  }
+]

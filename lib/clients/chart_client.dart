@@ -8,7 +8,7 @@ class ChartClient {
   /// Generates a bar chart using QuickChart.io and saves it as a PNG.
   Future<void> generateChart(List<PromptEvaluationResult> results, String path) async {
     print('Generating chart to $path...');
-    final labels = results.asMap().keys.map((i) => 'P\${i + 1}').toList();
+    final labels = results.asMap().keys.map((i) => 'P${i + 1}').toList();
     final scores = results.map((r) => r.score).toList();
 
     final chartConfig = {
